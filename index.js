@@ -34,5 +34,10 @@ async function router(change) {
       id: obj._id.toHexString(),
     };
     await elastic.addDocument(insertobj);
+  } else if (type == "update") {
+    let id = change.documentKey._id.toHexString();
+    let obj = change.updateDescription.updatedFields;
+
+    await elastic.updateDocument(id, obj);
   }
 }

@@ -26,15 +26,15 @@ MongoClient.connect(
     }, 1000);
 
     // update existing document
-    // setTimeout(function() {
-    //   collection.updateOne(
-    //     { ironman: "tony stark" },
-    //     { $set: { ironman: "elon musk" } },
-    //     function(err) {
-    //       assert.ifError(err);
-    //     }
-    //   );
-    // }, 6000);
+    setTimeout(function() {
+      collection.updateOne(
+        { name: "user1" },
+        { $set: { name: "use1_update" } },
+        function(err) {
+          assert.ifError(err);
+        }
+      );
+    }, 2000);
     // delete existing document
     // setTimeout(function() {
     //   collection.deleteOne({ spiderman: "peter parker" }, function(err) {

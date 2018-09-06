@@ -57,6 +57,7 @@ function addDocument(document) {
   return elasticClient.index({
     index: indexName,
     type: typeName,
+    id: document.id,
     body: {
       id: document.id,
       name: document.name,
@@ -65,6 +66,18 @@ function addDocument(document) {
   });
 }
 exports.addDocument = addDocument;
+
+function updateDocument(id, updateobj) {
+  return elasticClient.update({
+    index: indexName,
+    type: typeName,
+    id: id,
+    body: {
+      doc: updateobj,
+    },
+  });
+}
+exports.updateDocument = updateDocument;
 
 function search(name) {
   return elasticClient.search({
