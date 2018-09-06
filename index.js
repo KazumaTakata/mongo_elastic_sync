@@ -37,7 +37,16 @@ async function router(change) {
   } else if (type == "update") {
     let id = change.documentKey._id.toHexString();
     let obj = change.updateDescription.updatedFields;
+    let keys = Object.keys(obj);
+    insertobj = {};
+    if (keys.includes("name")) {
+      insertobj["name"] = obj["name"];
+    }
 
-    await elastic.updateDocument(id, obj);
+    if (keys.includes("photourl")) {
+      insertobj["photourl"] = obj["photourl"];
+    }
+
+    await elastic.updateDocument(id, insertobj);
   }
 }
